@@ -1,5 +1,7 @@
 from population import Population
 from files import readParamsFile
+from pprint import pprint
+
 
 params = readParamsFile('params.dat')
 
@@ -8,15 +10,16 @@ def ga(size):
     pop.generate("honey")
     pop.sort()
 
-    iterations = 0
+    iterations = []
 
     while not pop.haveConverged(0):
-        iterations += 1
         pop.pairAndMate()
         pop.mutate()
         pop.sort()
+        iterations.append(pop.best())
 
-    pop.display()
-    print iterations
+
+    pprint(iterations)
+    print len(iterations)
 
 ga(50)

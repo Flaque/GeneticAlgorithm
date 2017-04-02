@@ -49,6 +49,9 @@ class Population:
         genes.extend(self.mate(pairs))
         self.items = [self.__appendDistance(gene) for gene in genes]
 
+    def best(self):
+        return self.items[0]
+
     def mutate(self):
         for index, (gene, dist) in enumerate(self.items):
             if random() >= self.params["mutation_factor"]:
